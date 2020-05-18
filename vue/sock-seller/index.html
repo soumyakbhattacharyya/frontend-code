@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>
+        LSE Customer App
+    </title>
+    <link rel="stylesheet" type="text/css" href="product-style.css">
+</head>
+
+<body>
+    <div class="nav-bar"></div>
+    <div id="app">
+        <div class="product">
+            <div class="product-image">
+                <img v-bind:src="image">
+                <br>
+                <h3>
+                    <a v-bind:href='information'>Information</a>
+                </h3>
+            </div>
+            <detail></detail>
+            <div class="product-info">
+                <h1>
+                    {{ product }}
+                </h1>
+                <p v-if='stock > 50'>In Stock</p>
+                <p v-else-if='stock > 10 && stock < 30'>Almost sold!</p>
+                <p v-else='stock < 10' v-bind:class="{'text-decoration': 'line-through'}">Sold</p>
+                <p v-show='onSale' v-if='stock > 10'>On Sale!!!</p>
+                <hr>
+                <h3>Available Colors</h2>
+                    <div class="color-box" v-for="(variant,index) in variants"
+                        v-bind:style="{backgroundColor: variant.variant}" v-on:mouseover="colorChosen(variant)"
+                        v-on:click="variantChosen(index)"></div>
+                    <hr>
+                    <h3>Info - {{brandInfo}}</h3>
+                    <h3>Properties</h3>
+                    <ul v-for='contentAttribute in contentAttributes'>
+                        <li>
+                            {{contentAttribute}}
+                        </li>
+                    </ul>
+                    <h4>General Information</h4>
+                    <ul v-for='info in infos' :key='info.id'>
+                        <li>
+                            {{info.qualifier}} {{info.value}}
+                        </li>
+                    </ul>
+                    <div id='cart'>
+                        <button v-on:click="addToCart">
+                            Add
+                        </button>
+                        <button v-on:click="removeFromCart">
+                            Remove
+                        </button>
+                    </div>
+                    <div class="cart">Cart - {{cart}}</div>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="main.js"></script>
+</body>
+
+</html>
