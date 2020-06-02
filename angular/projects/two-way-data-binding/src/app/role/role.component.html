@@ -1,0 +1,22 @@
+<div>
+  <!-- property binding example -->
+  <p [innerText]="id"></p>
+  <hr>
+  <!-- string interpolation example -->
+  <ul>
+    <li>
+      {{name}}
+    </li>
+    <li>
+      {{description}}
+    </li>
+  </ul>
+  <!-- two way binding example -->
+  Name : <input type="text" [(ngModel)]="addedName">
+  <br>
+  Description: <input type="text" [(ngModel)]="addedDescription">
+  <br>
+  <br>
+  <!-- event binding example-->
+  <button (click)="addRole($event)">Add Role</button>
+</div>
